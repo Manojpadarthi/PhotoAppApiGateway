@@ -16,6 +16,7 @@ import io.jsonwebtoken.Jwts;
 import reactor.core.publisher.Mono;
 
 @Component
+//this filter executes if a filter is assigned to a specific route and it will execute at gateway end before routing to destination microservice
 public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<AuthorizationHeaderFilter.Config>
 {
 	@Autowired
@@ -26,7 +27,7 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
 		super(Config.class);
 	}
 	
-	
+	//spring framework allows to configure for behaviour of custom filter like AuthorizationHeaderFilter)
 	public static class Config
 	{
 		//put some configuration properties here

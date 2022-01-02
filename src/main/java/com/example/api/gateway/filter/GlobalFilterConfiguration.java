@@ -12,44 +12,50 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 @Configuration
-public class GlobalFilterConfiguration 
-{
+public class GlobalFilterConfiguration {
 
 	final Logger logger = LoggerFactory.getLogger(GlobalFilterConfiguration.class);
-	
-	
+
+	/**
+	 * @return
+	 */
+	/**
+	 * @return
+	 */
+	/**
+	 * @return
+	 */
 	@Bean
 	@Order(1)
-	public GlobalFilter secondPreFilter() 
-	{
+	public GlobalFilter secondGlobalFilter() {
+
 		
-		
-		return (ServerWebExchange exchange,GatewayFilterChain chain)->{
+
+		return (ServerWebExchange exchange, GatewayFilterChain chain) -> {
+
 			logger.info("My Second global pre filter was executed");
-			return chain.filter(exchange).then(Mono.fromRunnable(()->
-			{
+			return chain.filter(exchange).then(Mono.fromRunnable(() -> {
 				logger.info("My Second global post filter was executed");
-		}));
-	};
-	
+
+			}));
+
+		};
+
 	}
+
 	
+
 	@Bean
 	@Order(2)
-	public GlobalFilter thirdPreFilter() 
-	{
-		
-		return (ServerWebExchange exchange,GatewayFilterChain chain)->{
+	public GlobalFilter thirdGlobalFilter() {
+
+		return (ServerWebExchange exchange, GatewayFilterChain chain) -> {
 			logger.info("My Third global pre filter was executed");
-			return chain.filter(exchange).then(Mono.fromRunnable(()->
-			{
-				logger.info("My Third global post filter was executed");
-		}));
-	};
-	
+			return chain.filter(exchange).then(Mono.fromRunnable(() -> {
+				logger.info("My third global post filter was executed");
+			}));
+		};
+
 	}
-	
-	
-	
-	
+
 }
